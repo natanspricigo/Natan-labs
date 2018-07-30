@@ -64,3 +64,4 @@ typings/
 replaces/files/
 replaces/out_files/
 .DS_Store
+consertoDeArquivos/files/*
