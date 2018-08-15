@@ -3,6 +3,38 @@
  var router = express.Router();
  const nodemailer = require('nodemailer');
  const pug = require('pug');
+ var fs = require('fs');
+ var path = require('path');
+ var config;
+
+ function readCfg() {
+
+ 	/*
+ 	exemplo config/config.cfg : 
+	{
+		"user": {
+			"user": "meuemail",
+			"pass": "minhasenha "
+		}
+	}
+ 	*/
+
+ 	var filePath = path.join('config/config.cfg');
+ 	fs.readFile(filePath, {
+ 		encoding: 'utf-8'
+ 	}, function(err, data) {
+ 		if (!err) {
+ 			config = JSON.parse(data);
+ 			console.log('received data: ' + data);
+ 		} else {
+ 			console.log(err);
+ 			config = {
+ 				"user": {}
+ 			}
+ 		}
+ 	});
+ }
+ readCfg();
 
  /* GET users listing. */
  router.get('/', function(req, res, next) {
@@ -13,8 +45,8 @@
  		port: 587,
  		secure: false,
  		auth: {
- 			user: "",
- 			pass: ""
+ 			user: config.user.user,
+ 			pass: config.user.pass
  		}
  	});
 
@@ -30,7 +62,7 @@
  	// setup email data with unicode symbols
  	let mailOptions = {
  		from: '"Autavi equipamentos naoresponder@autavi.com.br', // sender address
- 		to: 'natan.spricigo@gmail.com, souza.car@hotmail.com, natan_spricigo@hotmail.com', // list of receivers
+ 		to: 'natan.spricigo@gmail.com', // list of receivers
  		subject: 'Olá avicultor ✔', // Subject line
  		text: 'Muito obrigado pelo interesse, aposto que iniciaremos uma conversa muito próspera sobre a melhoria do seu lote de aves. https://autavi.com.br/', // plain text body
  		html: pug.renderFile('templateEmail/email.pug', {
@@ -69,5 +101,7 @@
  	});
  	res.redirect("/");
  });
+
+
 
  module.exports = router;
