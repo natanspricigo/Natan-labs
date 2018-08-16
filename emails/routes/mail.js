@@ -1,107 +1,45 @@
  'use strict';
  var express = require('express');
- var router = express.Router();
- const nodemailer = require('nodemailer');
+ var ROUTER = express.Router();
+ var MailSender = require('../scripts/MailSender');
  const pug = require('pug');
- var fs = require('fs');
- var path = require('path');
- var config;
+ const dbm = require('../scripts/DatabaseService');
+ const Utilitarios = require('../scripts/Utilitarios');
 
- function readCfg() {
+ const dataMananger = new dbm.DatabaseMananger();
+ const mailSender = new MailSender();
 
- 	/*
- 	exemplo config/config.cfg : 
-	{
-		"user": {
-			"user": "meuemail",
-			"pass": "minhasenha "
-		}
-	}
- 	*/
+ ROUTER.get('/', function(req, res, next) {
 
- 	var filePath = path.join('config/config.cfg');
- 	fs.readFile(filePath, {
- 		encoding: 'utf-8'
- 	}, function(err, data) {
- 		if (!err) {
- 			config = JSON.parse(data);
- 			console.log('received data: ' + data);
- 		} else {
- 			console.log(err);
- 			config = {
- 				"user": {}
- 			}
- 		}
- 	});
- }
- readCfg();
+ 	const destinatarios = "natan.spricigo@gmail.com";
+ 	const titulo = 'Olá avicultor ✔';
+ 	const text = 'Muito obrigado pelo interesse, aposto que iniciaremos uma conversa muito próspera sobre a melhoria do seu lote de aves. https://autavi.com.br/';
 
- /* GET users listing. */
- router.get('/', function(req, res, next) {
+ 	// para renderizar a imagem
+ 	const attachments = [
+ 		mailSender.createAttachment("logo.png", "templateEmail/images/logo.png", "logomarca_autavi"),
+ 		mailSender.createAttachment("facebook.png", "templateEmail/images/facebook.png", "facebook")
+ 	];
 
-
- 	let transporter = nodemailer.createTransport({
- 		host: 'smtp.umbler.com',
- 		port: 587,
- 		secure: false,
- 		auth: {
- 			user: config.user.user,
- 			pass: config.user.pass
+ 	const html = pug.renderFile('templateEmail/email.pug', {
+ 		name: 'Avicultor',
+ 		autavi: {
+ 			nome: "Autavi equipamentos",
+ 			telefone: "49 9 9940 7837",
+ 			email: "vendas@autavi.com.br",
+ 			endereco: "Rua General Osório, 706, Centro | Xanxerê - SC",
  		}
  	});
 
- 	// verify connection configuration
- 	transporter.verify(function(error, success) {
- 		if (error) {
- 			console.log(error);
- 		} else {
- 			console.log('Servidor de Email ok !');
- 		}
- 	});
+ 	const mailOptions = mailSender.crateMailOption(destinatarios, titulo, text, html, attachments);
 
- 	// setup email data with unicode symbols
- 	let mailOptions = {
- 		from: '"Autavi equipamentos naoresponder@autavi.com.br', // sender address
- 		to: 'natan.spricigo@gmail.com', // list of receivers
- 		subject: 'Olá avicultor ✔', // Subject line
- 		text: 'Muito obrigado pelo interesse, aposto que iniciaremos uma conversa muito próspera sobre a melhoria do seu lote de aves. https://autavi.com.br/', // plain text body
- 		html: pug.renderFile('templateEmail/email.pug', {
- 			name: 'Avicultor',
- 			autavi: {
- 				nome: "Autavi equipamentos",
- 				telefone: "49 9 9940 7837",
- 				email: "vendas@autavi.com.br",
- 				endereco: "Rua General Osório, 706, Centro | Xanxerê - SC",
- 			}
- 		}),
- 		attachments: [{
- 			filename: 'logo.png',
- 			path: 'templateEmail/images/logo.png',
- 			cid: 'logomarca_autavi' //same cid value as in the html img src
- 		}, {
- 			filename: 'facebook.png',
- 			path: 'templateEmail/images/facebook.png',
- 			cid: 'facebook' //same cid value as in the html img src
- 		}]
- 	};
+ 	//raliza o envio
+ 	mailSender.send(mailOptions);
 
+ 	dataMananger.insert(dataMananger.tableNames.EMAILS, mailOptions);
+ 	dataMananger.insert(dataMananger.tableNames.DESTINATARIOS, destinatarios.split(", "));
 
-
- 	// send mail with defined transport object
- 	transporter.sendMail(mailOptions, (error, info) => {
- 		if (error) {
- 			return console.log(error);
- 		}
- 		console.log('Message sent: %s', info.messageId);
- 		// Preview only available when sending through an Ethereal account
- 		console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
- 		// Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
- 		// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
- 	});
  	res.redirect("/");
  });
 
-
-
- module.exports = router;
+ module.exports = ROUTER;

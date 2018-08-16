@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "debug": "DEBUG=notasfiscais:* npm start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -12,6 +13,8 @@
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "nodemailer": "^4.6.7",
-    "pug": "^2.0.0-beta11"
+    "pug": "^2.0.0-beta11",
+    "lowdb": "^1.0.0",
+    "moment": "^2.22.2"
   }
 }

@@ -1,0 +1,15 @@
+
+// Crie um arquivo chamado config.cfg nesta pasta, contendo o conteudo abaixo. Preencha conforme sua necessidade.
+
+{
+	"user": {
+		"host": "smtp...",
+		"port": "587",
+		"secure": false,
+		"user": "meuemail",
+		"pass": "minhasenha"
+	},
+	"email": {
+		"from": "emailDeEnvio"
+	}
+}
