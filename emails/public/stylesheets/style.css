@@ -1,8 +1,40 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
+}
+
+. {
+}
+
+.inline {
+	display: inline-block;
+}
+
+.itemListaEmails {
+	border: solid 1px #ddd;
+	margin: 2px 5px;
+}
+
+.itemListaEmails .itemDesc {
+	padding: 3px;
+	margin: 1px 5px;
+	border: solid 1px #c3c3c3;
+	background-color: #eee;
+}
+
+.itemListaEmails .itemDesc:first-child {
+	margin-top: 5px;
+}
+
+.itemListaEmails .contentItemEmail {
+	min-width: 300px;
+	min-height: 500px;
+	max-height: 700px;
+	border: solid 2px black;
+	padding: 3px;
+	margin: 5px;
 }

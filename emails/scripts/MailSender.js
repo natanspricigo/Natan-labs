@@ -102,7 +102,7 @@
              text: textMessage,
              html: htmlMessage,
              attachments: attachments,
-             data: moment().format("DD/MM/YYYY  hh:mm")
+             data: moment().format("DD/MM/YYYY  HH:mm")
          };
      }
 

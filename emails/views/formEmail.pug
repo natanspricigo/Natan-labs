@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  a(href="/") Voltar...
+  h1 Novo Email
+  form(method="post", action="/sendmail/enviar")
+      div
+          label Destinatarios
+          input(name="email.destinatarios", type="email", placeholder="natan@email.com, voce@email.com")
+      
+      div
+          label Assunto
+          input(name="email.assunto", type="text")
+
+      div
+          label assunto
+          textarea(name="email.texto", type="text", rows="3")
+
+      div
+          button(type="submit") Enviar

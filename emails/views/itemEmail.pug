@@ -1,0 +1,7 @@
+div(class="inline itemListaEmails")
+    div.itemDesc Para : #{email.to}
+    div.itemDesc Titulo : #{email.subject}
+    div.itemDesc Dia : #{email.data}
+    div
+        - var htmlContent = "data:text/html,"+email.html
+        iframe(src=htmlContent, class="contentItemEmail")

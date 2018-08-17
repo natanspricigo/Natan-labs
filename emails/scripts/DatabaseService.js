@@ -77,6 +77,12 @@ class DatabaseMananger {
 			.write();
 	}
 
+	count(table) {
+		return db.get(table)
+			.size()
+			.value()
+	}
+
 	remove(table, obj) {
 		if (obj) {
 			console.warn("Removendo codigo %s da tabela %s", (obj ? obj.id : "???????"), table);

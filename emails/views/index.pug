@@ -2,6 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  a(href="/sendmail") Enviar email
+  
+  p Quantidade de emails: #[a(href="/listaDeEmails") #{qtdEmails} emails enviados]
+  p Quantidade de contatos: #{qtdContatos}
+
+  a(href="/novoEmail") Novo Email
+  br
+  a(href="/sendmail") Testar Email
 
