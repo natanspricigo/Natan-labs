@@ -1,8 +1,12 @@
-body {
-	padding: 50px;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
 
+body {
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	margin: 0;
+}
+.main{
+	padding: 50px;
+}
 a {
 	color: #00B7FF;
 }
@@ -37,4 +41,130 @@ a {
 	border: solid 2px black;
 	padding: 3px;
 	margin: 5px;
+}
+
+.formItem {
+	display: block;
+	background-color: #fefefe;
+	margin: 10px;
+}
+
+.formItem label {
+	display: block;
+	font-size: 10px;
+	font-weight: bolder;
+	padding-bottom: 3px;
+}
+
+.formItem input {
+	font-size: 18px;
+	border: solid 1px #ccc;
+	border-radius: 6px;
+	padding: 7px;
+	box-sizing: border-box;
+}
+
+.btn-edit {
+	border: solid 2px #2d9596;
+	background-color: #2d959636;
+	padding: 5px 20px;
+	text-decoration: none;
+	border-radius: 17px;
+	color: #000;
+	font-size: 15px;
+	margin: 5px 10px;
+}
+
+.btn-new {
+	border: solid 2px #22542f;
+	background-color: #22543014;
+	padding: 5px 20px;
+	text-decoration: none;
+	border-radius: 17px;
+	color: #000;
+	font-size: 15px;
+	margin: 5px 10px;
+}
+
+.btn-save {
+	border: solid 2px #222a54;
+	background-color: #222a541c;
+	padding: 5px 20px;
+	text-decoration: none;
+	border-radius: 17px;
+	color: #000;
+	font-size: 15px;
+	margin: 5px 10px;
+}
+
+.f-right{
+	float: right;
+}
+.f-left{
+	float: left;
+}
+
+.ql-editor p{
+	margin-bottom: dashed 1px #ddd;
+	padding-bottom: 1px;
+}
+
+
+
+/* menu */
+
+menu {
+	padding: 0px;
+	margin: 0px;
+	background-color: #5ab0b9;
+}
+
+menu ul{
+	list-style-position: inside;
+	list-style-type: none;
+	border-bottom: solid 1px #ddd;
+	padding: 10px;
+}
+menu ul li{
+	padding: 10px;
+	font-size: 22px;
+	display:inline;
+	clear: both;
+}
+
+menu ul li a{
+	text-decoration: none;
+	color: #034603;
+}
+
+/* ------ */
+
+::-webkit-input-placeholder {
+
+	/* Chrome/Opera/Safari */
+	color: #ddd;
+}
+
+::-moz-placeholder {
+
+	/* Firefox 19+ */
+	color: #ddd;
+}
+
+:-ms-input-placeholder {
+
+	/* IE 10+ */
+	color: #ddd;
+}
+
+:-moz-placeholder {
+
+	/* Firefox 18- */
+	color: #ddd;
+}
+
+input:-webkit-autofill 
+{    
+    -webkit-box-shadow: 0 0 0px 1000px #f9fbfd inset !important;
+    -webkit-text-fill-color: #4D90FE !important;
 }

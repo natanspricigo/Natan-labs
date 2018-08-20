@@ -1,0 +1,16 @@
+.w-100 { width: 100%; }
+.w-75 { width: 75%; }
+.w-50 { width: 50%; }
+.w-33 { width: 33.33333%; }
+.w-20 { width: 20%; }
+.w-10 { width: 10%; }
+@media screen and (max-width:600px) {
+	.wm-100 { width: 100%; }
+	.wm-75 { width: 75%; }
+	.wm-50 { width: 50%; }
+}
+@media screen and (max-width:400px) {
+	.wxs-100 { width: 100%; }
+	.wxs-75 { width: 75%; }
+	.wxs-50 { width: 50%; }
+}

@@ -2,6 +2,22 @@ doctype html
 html
   head
     title= title
+    meta(charset="utf-8")
+    block css
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/response.css')
+  
   body
-    block content
+
+      menu
+        ul
+          li 
+            a(href="/") Inicio
+          li 
+            a(href="/listaDeEmails") Lista de emails
+          li 
+            a(href="/novoEmail") Novo Email
+            
+      div.main
+          block content
+          block js

@@ -19,7 +19,7 @@ router.get('/listaDeEmails', function(req, res, next) {
 });
 
 router.get('/novoEmail', function(req, res, next) {
-	res.render('formEmail', {});
+	res.render('formEmail', {title: 'Novo email'});
 });
 
 module.exports = router;
