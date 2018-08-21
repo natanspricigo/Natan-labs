@@ -31,4 +31,9 @@
  });
 
 
+ ROUTER.get('/api/status', function(req, res, next) {
+ 	res.json("ok");
+ });
+
+
  module.exports = ROUTER;

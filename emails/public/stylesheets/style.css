@@ -132,6 +132,12 @@ menu ul li{
 	clear: both;
 }
 
+menu ul li.active{
+	background-color: #ffffff40;
+    border-bottom: solid 4px #ffffff;
+    padding-bottom: 7px;
+}
+
 menu ul li a{
 	text-decoration: none;
 	color: #034603;

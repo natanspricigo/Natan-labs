@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
   h1= title
   
   p Quantidade de emails: #[a(href="/listaDeEmails") #{qtdEmails} emails enviados]
@@ -10,3 +11,5 @@ block content
   br
   a(href="/sendmail") Testar Email
 
+  script(type="text/javascript").
+      idActive = 'home'

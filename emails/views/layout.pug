@@ -6,18 +6,23 @@ html
     block css
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/response.css')
-  
+
   body
 
       menu
         ul
-          li 
+          li#home
             a(href="/") Inicio
-          li 
+          li#listaEmail
             a(href="/listaDeEmails") Lista de emails
-          li 
+          li#novoEmail
             a(href="/novoEmail") Novo Email
-            
+
       div.main
           block content
           block js
+          script(type="text/javascript").
+              var elToActive = document.getElementById(idActive || "");
+              if(elToActive){
+                  elToActive.className += " active";
+              }
